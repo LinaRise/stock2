@@ -1,0 +1,1 @@
+export const apiUrl = "hhtp://localhost:8080/"
