@@ -9,8 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "stock")
-@RequestMapping("stock")
-@JsonIgnoreProperties({"outcome_bills", "income_bills"})
+//@RequestMapping("stock")
+//@JsonIgnoreProperties({"outcome_bills", "income_bills"})
 public class Stock {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +21,13 @@ public class Stock {
   @Column(name = "address", nullable = false)
   String address;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "stock")
+  /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "stock")
   @JsonManagedReference
   private Set<Outcome_bill> outcome_bills;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "stock")
   @JsonManagedReference
-  private Set<Income_bill> income_bills;
+  private Set<Income_bill> income_bills;*/
 
   public Stock() {
 
@@ -38,7 +38,7 @@ public class Stock {
     this.address = address;
   }
 
-  public Set<Income_bill> getIncome_bills() {
+  /*public Set<Income_bill> getIncome_bills() {
     return income_bills;
   }
 
@@ -52,10 +52,14 @@ public class Stock {
 
   public void setOutcome_bills(Set<Outcome_bill> outcome_bills) {
     this.outcome_bills = outcome_bills;
-  }
+  }*/
 
   public Long getId() {
     return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
   }
 
   public void setId(Long id) {

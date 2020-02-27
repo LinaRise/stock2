@@ -16,43 +16,48 @@ public class Product {
   @Column(name = "title", nullable = false)
   private String title;
 
-  private String properties;
   @Column(name = "price", nullable = false)
   private int price;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)//persist, тк чтобы каскад распростаранялся только на сохранение и изменние, а не на удаление
+  @ManyToOne//persist, тк чтобы каскад распростаранялся только на сохранение и изменние, а не на удаление
   @JoinColumn(name = "measurement_id",nullable = false)
-  @JsonBackReference
+  //@JsonBackReference
   private Measurement measurement;
 
-  @OneToMany(mappedBy = "product")
+/*  @OneToMany(mappedBy = "product")
   @JsonManagedReference
-  Set<OutcomeStrings> outcomeStrings;
+  Set<OutcomeStrings> outcomeStrings;*/
 
+  public void setId(long id) {
+    this.id = id;
+  }
+
+/*
   @OneToMany(mappedBy = "product")
   @JsonManagedReference
   Set<IncomeStrings> incomeStrings;
+*/
 
-  public Product(String title, String properties, int price, Measurement measurement) {
-    this.title = title;
-    this.properties = properties;
-    this.price = price;
-    this.measurement = measurement;
-  }
+
 
   public Product() {
   }
 
-  public Product(String title, String properties, int price, Measurement measurement, Set<OutcomeStrings> outcomeStrings, Set<IncomeStrings> incomeStrings) {
+  public Product(String title, int price, Measurement measurement) {
     this.title = title;
-    this.properties = properties;
     this.price = price;
     this.measurement = measurement;
-    this.outcomeStrings = outcomeStrings;
-    this.incomeStrings = incomeStrings;
   }
 
-  public Set<OutcomeStrings> getOutcomeStrings() {
+  public Product(String title, int price, Measurement measurement, Set<OutcomeStrings> outcomeStrings, Set<IncomeStrings> incomeStrings) {
+    this.title = title;
+    this.price = price;
+    this.measurement = measurement;
+   // this.outcomeStrings = outcomeStrings;
+   // this.incomeStrings = incomeStrings;
+  }
+
+  /*public Set<OutcomeStrings> getOutcomeStrings() {
     return outcomeStrings;
   }
 
@@ -66,7 +71,7 @@ public class Product {
 
   public void setIncomeStrings(Set<IncomeStrings> incomeStrings) {
     this.incomeStrings = incomeStrings;
-  }
+  }*/
 
   public Long getId() {
     return id;
@@ -84,13 +89,6 @@ public class Product {
     this.title = title;
   }
 
-  public String getProperties() {
-    return properties;
-  }
-
-  public void setProperties(String properties) {
-    this.properties = properties;
-  }
 
 
   public long getMeasurementId() {

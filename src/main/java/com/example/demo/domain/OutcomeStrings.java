@@ -14,7 +14,7 @@ public class OutcomeStrings {
 
   @ManyToOne
   @JoinColumn(name = "product_id", nullable = false)
-  @JsonBackReference
+  //@JsonBackReference
   Product product;
 
   @ManyToOne

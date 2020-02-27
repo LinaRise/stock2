@@ -10,8 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "provider")
-@RequestMapping("provider")
-@JsonIgnoreProperties({"outcome_bills","income_bills"})
+//@RequestMapping("provider")
+//@JsonIgnoreProperties({"outcome_bills","income_bills"})
 public class Provider {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,31 +19,32 @@ public class Provider {
   long id;
   @Column(name = "title", nullable = false)
   private String title;
-  private String contact_name;
-  private String phone_number;
   @Column(name = "address", nullable = false)
   private String address;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
+  /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
   @JsonManagedReference
   private Set<Outcome_bill> outcome_bills;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
   @JsonManagedReference
-  private Set<Income_bill> income_bills;
+  private Set<Income_bill> income_bills;*/
 
   public Provider() {
   }
 
-  public Provider(String title, String contact_name, String phone_number, String address) {
-    this.title = title;
-    this.contact_name = contact_name;
-    this.phone_number = phone_number;
-    this.address = address;
+  public void setId(long id) {
+    this.id = id;
   }
 
+  public Provider(String title, String address, Set<Outcome_bill> outcome_bills, Set<Income_bill> income_bills) {
+    this.title = title;
+    this.address = address;
+    /*this.outcome_bills = outcome_bills;
+    this.income_bills = income_bills;*/
+  }
 
-  public Set<Income_bill> getIncome_bills() {
+  /*public Set<Income_bill> getIncome_bills() {
     return income_bills;
   }
 
@@ -57,7 +58,7 @@ public class Provider {
 
   public void setOutcome_bills(Set<Outcome_bill> outcome_bills) {
     this.outcome_bills = outcome_bills;
-  }
+  }*/
 
   public Long getId() {
     return id;
@@ -75,21 +76,7 @@ public class Provider {
     this.title = title;
   }
 
-  public String getContact_name() {
-    return contact_name;
-  }
 
-  public void setContact_name(String contact_name) {
-    this.contact_name = contact_name;
-  }
-
-  public String getPhone_number() {
-    return phone_number;
-  }
-
-  public void setPhone_number(String phone_number) {
-    this.phone_number = phone_number;
-  }
 
   public String getAddress() {
     return address;

@@ -30,8 +30,6 @@ public class Income_billController {
     return income_bill;
   }
 
-
-
   @PostMapping()
   public Income_bill create(@RequestBody Income_bill income_bill) {
     Income_bill income_bill1 = new Income_bill();

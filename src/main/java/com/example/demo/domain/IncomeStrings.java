@@ -13,7 +13,7 @@ public class IncomeStrings {
   long id;
 
   @ManyToOne
-  @JsonBackReference
+  //@JsonBackReference
   @JoinColumn(name = "product_id",nullable = false)
   Product product;
 

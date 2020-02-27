@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "measurement")
-@JsonIgnoreProperties("product")
+//@JsonIgnoreProperties("product")
 public class Measurement {
   @Id// данное поле — primary key
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,19 +19,19 @@ public class Measurement {
   String measure;
   //  @JsonView(Views.IdName.class)
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "measurement")
+  /*@OneToMany(fetch = FetchType.EAGER, mappedBy = "measurement")
   @JsonManagedReference
   @JsonIgnore
-  private Set<Product> product;
+  private Set<Product> product;*/
 
 
-  public Set<Product> getProduct() {
+  /*public Set<Product> getProduct() {
     return product;
   }
 
   public void setProduct(Set<Product> product) {
     this.product = product;
-  }
+  }*/
 
 
   public Measurement() {

@@ -46,16 +46,18 @@ public class MainController {
   public String main(Model model, @AuthenticationPrincipal User user) {
     HashMap<Object, Object> data = new HashMap<>();
 
-    data.put("profile", user);
+    if(user!=null) {//чтобы не отображались данные, если мы еще не авторизованы
+      data.put("profile", user);
 //    data.put("measurements", measurementRepo.findAll());
-    data.put("measurements", measurementRepo.findAll());
-    data.put("products", productRepo.findAll());
-    data.put("providers", providerRepo.findAll());
-    data.put("income_bills", income_billRepo.findAll());
-    data.put("incomeStringss", incomeStringsRepo.findAll());
-    data.put("outcome_bills",outcome_billRepo.findAll());
-    data.put("outcomeStringss",outcomeStringsRepo.findAll());
-    data.put("stocks",stockRepo.findAll());
+/*      data.put("measurements", measurementRepo.findAll());
+      data.put("products", productRepo.findAll());
+      data.put("providers", providerRepo.findAll());
+      data.put("income_bills", income_billRepo.findAll());
+      data.put("incomeStringss", incomeStringsRepo.findAll());
+      data.put("outcome_bills", outcome_billRepo.findAll());
+      data.put("outcomeStringss", outcomeStringsRepo.findAll());
+      data.put("stocks", stockRepo.findAll());*/
+    }
 
     model.addAttribute("frontendData", data);
     model.addAttribute("isDevMode", "dev".equals(profile));

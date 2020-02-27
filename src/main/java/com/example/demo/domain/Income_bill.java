@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,20 +15,19 @@ public class Income_bill {
   @Column(name = "id", nullable = false)
   long id;
 
-  @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+  @ManyToOne(optional = false)
   @JoinColumn(name = "stock_id")
-  @JsonBackReference
+  //@JsonBackReference
   private Stock stock;
 
-  @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+  @ManyToOne(optional = false)
   @JoinColumn(name = "provider_id")
-  @JsonBackReference
+  //@JsonBackReference
   private Provider provider;
 
   @JsonManagedReference
-  @OneToMany(mappedBy = "income_bill")
-  Set<IncomeStrings> incomeStrings;
-
+  @OneToMany(mappedBy = "income_bill", cascade = CascadeType.REMOVE)
+  List<IncomeStrings> incomeStrings;
 
 
   public long getId() {
@@ -54,11 +54,12 @@ public class Income_bill {
     this.provider = provider;
   }
 
-  public Set<IncomeStrings> getIncomeStrings() {
+  public List<IncomeStrings> getIncomeStrings() {
     return incomeStrings;
   }
 
-  public void setIncomeStrings(Set<IncomeStrings> incomeStrings) {
+  public void setIncomeStrings(List<IncomeStrings> incomeStrings) {
     this.incomeStrings = incomeStrings;
   }
+
 }
